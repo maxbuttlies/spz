@@ -1,0 +1,15 @@
+<%  @articles.each { |article|  %>
+<ul>
+	<li>
+		<a href="get?keyword=<%=article.keyword%>"><%=article.title%></a>
+		<a href="edit?keyword=<%=article.keyword%>">bearbeiten</a>
+		<ul>
+		<%getKinds(article.keyword).each { |e| %>
+		<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
+			<a href="edit?keyword=<%=e.keyword%>">bearbeiten</a>
+			</li>
+		<% }%>
+		</ul>
+	</li>
+</ul>
+	<% }%>

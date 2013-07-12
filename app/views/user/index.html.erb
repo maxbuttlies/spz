@@ -1,0 +1,12 @@
+<%= form_tag("create", method: "post") do %>
+  <%= text_field_tag(:name, nil, placeholder: 'Name') %>
+  <%= text_field_tag(:first_name, nil, placeholder: 'Vorname') %>
+  <%= text_field_tag(:mail, nil, placeholder: 'e-mail') %>
+  <%= password_field_tag(:password, nil, placeholder: 'Kennwort') %>
+  <%= submit_tag("Registrieren") %>
+<% end %>
+<%= form_tag("login", method: "post") do %>
+  <%= text_field_tag(:mail, nil, placeholder: 'e-mail') %>
+  <%= password_field_tag(:password, nil, placeholder: 'Kennwort') %>
+  <%= submit_tag("Anmelden") %>
+<% end %>

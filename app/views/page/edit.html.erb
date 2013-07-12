@@ -1,0 +1,17 @@
+<%= form_tag(@action, method: "post") do %>
+  <%= text_field_tag(:title, @page.title, placeholder: 'Titel') %>
+  <%= text_field_tag(:parent,  @page.parent, placeholder: 'Übergeordnet') %>
+    <%= text_field_tag(:keyword,  @page.keyword, placeholder: 'Adresse') %>
+   <%= select_tag(:page_type, options_for_select([['Seite', 1], ['Modul', 2]], 1)) %>
+   <%= check_box_tag(:public) %>
+<%= label_tag(:public, "Öffentlich") %>
+<% if @page.content.is_a?Page::Article %>
+  <%= text_area_tag(:content,  @page.content.content, placeholder: 'Inhalt') %>
+  <%elsif  @page.content.is_a?Page::AddIn %>
+  <%= text_field_tag(:controller,  @page.content.controller, placeholder: 'controller') %>
+
+    <%= text_field_tag(:controller,  @page.content.action, placeholder: 'action') %>
+      <%end%>
+  <%= hidden_field_tag(:old_title, params[:title]) %>
+  <%= submit_tag("Speichern") %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_tag(@action, method: "post") do %>
+  <%= text_field_tag(:title, nil, placeholder: 'Titel') %>
+  <%= text_field_tag(:keyword, nil, placeholder: 'Adresse') %>
+  <%= text_area_tag(:content, nil, placeholder: 'Inhalt') %>
+  <%= text_hidden_tag(:oldname, "test") %>
+  <%= submit_tag("Speichern") %>
+<% end %>
