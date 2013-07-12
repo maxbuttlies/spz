@@ -1,6 +1,7 @@
 class UserController < ApplicationController
 	
 def welcome
+	
 end
 
 	def index

@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyApp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>MyApp</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-<%  
-	menu.each { |article|  %>
-<ul>
-	<li>
-		<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
-		
+	<header>	<%  
+		menu.each { |article|  %>
 		<ul>
-		<%getKinds(article.keyword).each { |e| %>
-		<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
-			
+			<li>
+				<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
+
+				<ul>
+					<%getKinds(article.keyword).each { |e| %>
+					<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
+
+					</li>
+					<% }%>
+				</ul>
 			</li>
-		<% }%>
 		</ul>
-	</li>
-</ul>
+	</header>
 	<% }%>
-<%= yield %>
+	<%= yield %>
 
 </body>
 </html>

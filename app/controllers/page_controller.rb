@@ -1,26 +1,26 @@
 class PageController < ApplicationController
 
-    def menu
+  def menu
     @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}], :public =>true)  
   end
 
-def list
-  @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}])
-end
+  def list
+    @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}])
+  end
 
-	def edit
+  def edit
     @action = "update"
     @page=Page::Page.where(:keyword =>  params[:keyword]).first
     session[:page] = @page
-	end
+  end
 
   def new 
     @action = "create"
     @page = Page::Page.new
     @page.content = Page::Article.new
-  respond_to do |format|
-    format.html { render :template => "page/edit.html.erb" }
-  end
+    respond_to do |format|
+      format.html { render :template => "page/edit.html.erb" }
+    end
   end
 
   def create
@@ -61,8 +61,8 @@ end
       article = Page::Article.new( :content=>params[:content])
       page.content = article
     elsif params[:page_type] == "2"
-add_in = Page::AddIn.new( :url=>params[:content])
-  page.content = add_in
+      add_in = Page::AddIn.new( :url=>params[:content])
+      page.content = add_in
     end
     page.save! 
   end
