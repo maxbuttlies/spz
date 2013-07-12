@@ -7,24 +7,38 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<header>	<%  
-		menu.each { |article|  %>
-		<ul>
-			<li>
-				<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
+	<div class="all">
+		<header class="head ">
+			<div class="inner clearfix">	
+				<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
+					<%  
+					menu.each { |article|  %>
+					<ul >
+						<li>
+							<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
 
-				<ul>
-					<%getKinds(article.keyword).each { |e| %>
-					<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
+							<ul>
+								<%getKinds(article.keyword).each { |e| %>
+								<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
 
-					</li>
-					<% }%>
-				</ul>
-			</li>
-		</ul>
-	</header>
-	<% }%>
-	<%= yield %>
+								</li>
+								<% }%>
+							</ul>
+						</li>
+					</ul>
+					<% }%></div>
+				</header>
+				
+				<div class="imageAtTop">
 
-</body>
-</html>
+				</div>
+
+				<main>
+					<%= yield %>
+				</main>
+				<footer class="foot">
+					Kontakt|Impressum
+				</footer>
+			</div>
+		</body>
+		</html>

@@ -1,20 +1,36 @@
-<%= render "/user/menu" %> 
-<%= form_tag(@action, method: "post") do %>
-<%= text_field_tag(:title, @page.title, placeholder: 'Titel') %>
-<%= text_field_tag(:parent,  @page.parent, placeholder: 'Übergeordnet') %>
-<%= text_field_tag(:keyword,  @page.keyword, placeholder: 'Adresse') %>
-<%if @action  == "create" %>
- <%= select_tag(:page_type, options_for_select([['Seite', 1], ['Modul', 2]], 1)) %>
- <%end%>
- <%= check_box_tag(:public, "yes",@page.public) %>
- <%= label_tag(:public, "Öffentlich") %>
- <% if @page.content.is_a?Page::Article %>
- <%= text_area_tag(:content,  @page.content.content, placeholder: 'Inhalt') %>
- <%elsif  @page.content.is_a?Page::AddIn %>
- <%= text_field_tag(:controller,  @page.content.controller, placeholder: 'controller') %>
+<div class="internSection clearfix">
+	<%= render "/user/menu" %> 
+	<div class="content">
+		<header>
+			<h1>
+				Seite bearbeiten
+			</h1>
+		</header>
 
- <%= text_field_tag(:controller,  @page.content.action, placeholder: 'action') %>
- <%end%>
- <%= hidden_field_tag(:old_title, params[:title]) %>
- <%= submit_tag("Speichern") %>
- <% end %>
+		<%= form_tag(@action, method: "post", class: "pageEditor") do %>
+		<%= text_field_tag(:title, @page.title, placeholder: 'Titel', class: "title") %>
+		<%= text_field_tag(:parent,  @page.parent, placeholder: 'Übergeordnet',class: "parent") %>
+		<%= text_field_tag(:keyword,  @page.keyword, placeholder: 'Adresse' ,class: "keyword") %>
+		<%if @action  == "create" %>
+		<%= select_tag(:page_type, options_for_select([['Seite', 1], ['Modul', 2]], 1)) %>
+		<%else%>
+		<%= hidden_field_tag(:page_type, getPageType(@page)) %>
+
+		<%end%>
+
+		<% if @page.content.is_a?Page::Article %>
+		<%= text_area_tag(:content,  @page.content.content, placeholder: 'Inhalt') %>
+		<%elsif  @page.content.is_a?Page::AddIn %>
+		<%= text_field_tag(:controller,  @page.content.controller, placeholder: 'controller') %>
+
+		<%= text_field_tag(:controller,  @page.content.action, placeholder: 'action') %>
+		<%end%>
+		<%= hidden_field_tag(:old_title, params[:title]) %>
+		<section class="info">
+			<%= check_box_tag(:public, "yes",@page.public , class: "public")%>
+			<%= label_tag(:public, "Öffentlich", class: "public") %>
+			<%= submit_tag("Speichern",class:"save") %>
+		</section>
+		<% end %>
+	</div>
+</div>

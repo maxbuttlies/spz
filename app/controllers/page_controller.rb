@@ -72,8 +72,11 @@ class PageController < ApplicationController
   end
   helper_method :getKinds
 
-  def getLink(page)
-    return Page::Page.where(:parent =>parent)
-  end
-  helper_method :getKinds
-end
+  def getPageType(p)
+    if p.content.is_a?Page::Article
+      return 1
+    elsif p.content.is_a?Page::AddIn
+     return 2
+   end  end
+   helper_method :getPageType
+ end

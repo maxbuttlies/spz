@@ -1,6 +1,13 @@
-<ul>
-	<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Seite restellen</a>
-	</li>
-	<li><a href="../<%=url_for :controller=>'page', :action => 'list'%>">Seiten bearbeiten</a>
-	</li>		
-</ul>
+<div class="leftMenu">
+<h2>Seiten</h2>
+	<ul>
+		<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neu</a>
+		</li>
+		<li><a href="../<%=url_for :controller=>'page', :action => 'list'%>">Bearbeiten</a>
+		</li>
+	</ul>
+	<h2>Benutzer</h2>
+	<ul>
+		<li><a href="<%= url_for(:action => 'logout', :controller => 'user') %>">Abmelden</a></li>		
+	</ul>
+</div>
