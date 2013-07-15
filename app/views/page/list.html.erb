@@ -1,16 +1,24 @@
-<%= render "/user/menu" %> 
-<%  @articles.each { |article|  %>
-<ul>
-	<li>
-		<a href="edit?keyword=<%=article.keyword%>"><%=article.title%></a>
+<div class="internSection clearfix">
+	<%= render "/user/menu" %> 
+	<div class="content">
+		<header>
+			<h1>
+				Seite bearbeiten
+			</h1>
+		</header><%  @articles.each { |article|  %>
+		<ul class="pageList">
+			<li>
+				<a href="edit?keyword=<%=article.keyword%>"><%=article.title%></a>
 
-		<ul>
-			<%getKinds(article.keyword).each { |e| %>
-			<li><a href="edit?keyword=<%=e.keyword%>"><%=e.title%></a>
-				
+				<ul>
+					<%getKinds(article.keyword).each { |e| %>
+					<li><a href="edit?keyword=<%=e.keyword%>"><%=e.title%></a>
+
+					</li>
+					<% }%>
+				</ul>
 			</li>
-			<% }%>
 		</ul>
-	</li>
-</ul>
-<% }%>
+		<% }%>
+	</div>
+</div>

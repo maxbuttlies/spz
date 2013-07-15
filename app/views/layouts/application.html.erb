@@ -10,13 +10,16 @@
 	<div class="all">
 		<header class="head ">
 			<div class="inner clearfix">	
+				<div class="logo"></div>
 				<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
-					<%  
-					menu.each { |article|  %>
-					<ul >
+					
+					<ul>
+						<%  
+						menu.each { |article|  %>
+
 						<li>
 							<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
-
+							<%if kinds? article.keyword%>
 							<ul>
 								<%getKinds(article.keyword).each { |e| %>
 								<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
@@ -24,11 +27,13 @@
 								</li>
 								<% }%>
 							</ul>
+							<%end%>
 						</li>
-					</ul>
-					<% }%></div>
+						<% }%>
+
+					</ul></div>
 				</header>
-				
+
 				<div class="imageAtTop">
 
 				</div>

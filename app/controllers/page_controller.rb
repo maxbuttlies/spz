@@ -71,7 +71,13 @@ class PageController < ApplicationController
     return Page::Page.where(:parent =>parent)
   end
   helper_method :getKinds
-
+  def kinds?(parent)
+    if Page::Page.where(:parent =>parent).count > 0
+      return true
+    else
+      return false
+    end
+  end
   def getPageType(p)
     if p.content.is_a?Page::Article
       return 1
