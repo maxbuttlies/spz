@@ -14,6 +14,7 @@ MyApp::Application.routes.draw do
 
   get "user/index"
   get "user/welcome"
+  get "user/list"
 
   post "user/create"
   post "user/login"
@@ -23,7 +24,7 @@ MyApp::Application.routes.draw do
 
   get "user/delete"
 
-  get "user/get"
+  get "user/edit"
 
   get "view/test"
 

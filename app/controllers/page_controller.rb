@@ -11,7 +11,7 @@ class PageController < ApplicationController
   def edit
     @action = "update"
     @page=Page::Page.where(:keyword =>  params[:keyword]).first
-    session[:page] = @page
+    session[:page] = @page._id
   end
 
   def new 
@@ -30,7 +30,8 @@ class PageController < ApplicationController
   end
 
   def update
-    page = session[:page]
+    id = session[:page]
+    page = Page::Page.where(:_id => id).first
     save_page page
   end
 

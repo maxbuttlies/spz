@@ -1,16 +1,22 @@
 <div class="internSection clearfix">
-	<%= render "/user/menu" %> 
+	
 	<div class="content">
-		<header>
+		<%= form_tag(@action, method: "post", class: "editor") do %>
+		<header class="clearfix">
 			<h1>
 				Seite bearbeiten
 			</h1>
+			<section class="info">
+				<%= check_box_tag(:public, "yes",@page.public , class: "public")%>
+				<%= label_tag(:public, "Öffentlich", class: "public") %>
+				<%= submit_tag("Speichern",class:"submitButton") %>
+			</section>
 		</header>
 
-		<%= form_tag(@action, method: "post", class: "pageEditor") do %>
-		<%= text_field_tag(:title, @page.title, placeholder: 'Titel', class: "title") %>
-		<%= text_field_tag(:parent,  @page.parent, placeholder: 'Übergeordnet',class: "parent") %>
-		<%= text_field_tag(:keyword,  @page.keyword, placeholder: 'Adresse' ,class: "keyword") %>
+
+		<%= text_field_tag(:title, @page.title, placeholder: 'Titel', class: "title full") %>
+		<%= text_field_tag(:parent,  @page.parent, placeholder: 'Übergeordnet',class: "parent half") %>
+		<%= text_field_tag(:keyword,  @page.keyword, placeholder: 'Adresse' ,class: "keyword half") %>
 		<%if @action  == "create" %>
 		<%= select_tag(:page_type, options_for_select([['Seite', 1], ['Modul', 2]], 1)) %>
 		<%else%>
@@ -26,11 +32,7 @@
 		<%= text_field_tag(:controller,  @page.content.action, placeholder: 'action') %>
 		<%end%>
 		<%= hidden_field_tag(:old_title, params[:title]) %>
-		<section class="info">
-			<%= check_box_tag(:public, "yes",@page.public , class: "public")%>
-			<%= label_tag(:public, "Öffentlich", class: "public") %>
-			<%= submit_tag("Speichern",class:"save") %>
-		</section>
+
 		<% end %>
 	</div>
 </div>

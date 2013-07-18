@@ -7,43 +7,52 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="all">
-		<header class="head ">
-			<div class="inner clearfix">	
-				<div class="logo"></div>
-				<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
-					
-					<ul>
-						<%  
-						menu.each { |article|  %>
+	<nav class="admin">
+		<ul class="clearfix">
+			<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
+			</li>	
+			<li><a href="<%= url_for(:action => 'list', :controller => 'user') %>">Benutzer bearbeiten</a>	
+				<li><a href="<%= url_for(:action => 'logout', :controller => 'user') %>">Abmelden</a>
+				</li>		
+			</ul>
+		</nav>
+		<div class="all">
+			<header class="head ">
+				<div class="inner clearfix">	
+					<div class="logo"></div>
+					<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
 
-						<li>
-							<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
-							<%if kinds? article.keyword%>
-							<ul>
-								<%getKinds(article.keyword).each { |e| %>
-								<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
+						<ul>
+							<%  
+							menu.each { |article|  %>
 
-								</li>
-								<% }%>
-							</ul>
-							<%end%>
-						</li>
-						<% }%>
+							<li>
+								<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
+								<%if kinds? article.keyword%>
+								<ul>
+									<%getKinds(article.keyword).each { |e| %>
+									<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
 
-					</ul></div>
-				</header>
+									</li>
+									<% }%>
+								</ul>
+								<%end%>
+							</li>
+							<% }%>
 
-				<div class="imageAtTop">
+						</ul></div>
+					</header>
 
+					<div class="imageAtTop">
+
+					</div>
+
+					<main>
+						<%= yield %>
+					</main>
+					<footer class="foot">
+						Kontakt|Impressum
+					</footer>
 				</div>
-
-				<main>
-					<%= yield %>
-				</main>
-				<footer class="foot">
-					Kontakt|Impressum
-				</footer>
-			</div>
-		</body>
-		</html>
+			</body>
+			</html>
