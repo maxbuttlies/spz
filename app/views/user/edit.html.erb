@@ -1,0 +1,32 @@
+<div class="internSection clearfix">
+	
+	<div class="content">
+		<%= form_tag("update", method: "post", class: "editor") do %>
+		<header class="clearfix">
+			<h1>
+				Seite bearbeiten
+			</h1>
+			<section class="info">
+				<div class="checkbox clearfix">
+					<div class="inner">
+						<input type="checkbox" value="None" id="active" name="active" />
+						<label for="active"></label>			
+					</div>
+					<%= label_tag(:active, "Aktiv", class: "active") %>
+				</div>
+				<%= submit_tag("Speichern",class:"submitButton") %>
+				<a class="exitButton" href="list">Abbrechen</a>
+			</section>
+		</header>
+
+
+		<%= text_field_tag(:mail, @user.mail, placeholder: 'e-mail', class: "mail full") %>
+		<%= text_field_tag(:first_name,  @user.first_name, placeholder: 'Vorname',class: "firstName half") %>
+		<%= text_field_tag(:name,  @user.name, placeholder: 'Name' ,class: "name half") %>
+		<%=password_field_tag(:password, nil, placeholder: 'Kennwort', class: 'password half')%>
+		<%=password_field_tag(:password_repeat, nil, placeholder: 'Kennwort wiederholen', class: 'passwordRepeat half')%>
+
+		
+		<% end %>
+	</div>
+</div>

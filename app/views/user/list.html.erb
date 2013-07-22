@@ -1,0 +1,24 @@
+<div class="internSection clearfix">
+	<div class="content">
+		<header class="clearfix">
+			<h1>
+				Benutzer
+			</h1>
+			<section class="info">
+
+			</section>
+		</header>
+		<table class="users">
+			<thead><td>Name</td><td>Vorname</td><td>e-mail</td></thead>
+
+			<%  @users.each { |user|  %>
+			<tr>
+				<td><a href="edit?id=<%=user._id%>"><%=user.name%></a></td>
+				<td><a href="edit?id=<%=user._id%>"><%=user.first_name%></a></td>
+				<td><a href="edit?id=<%=user._id%>"><%=user.mail%></a></td>
+			</tr>
+		</ul>
+		<% }%>
+	</table>
+</div>
+</div>
