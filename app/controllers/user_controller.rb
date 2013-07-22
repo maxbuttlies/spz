@@ -12,12 +12,11 @@ class UserController < ApplicationController
 
 	def create
 		password = hash params[:password]
-		user = User::User.new(:name => params[:name],
-			:first_name => params[:first_name], 
-			:mail => params[:mail], 
-			:password => password)	
-
-		user.save!
+		name = params[:name]
+		first_name = params[:first_name]
+		mail = params[:mail]
+		
+		save_user name, first_name, mail, password
 	end
 
 	def login
@@ -42,6 +41,7 @@ class UserController < ApplicationController
 		redirect_to :controller=>'user', :action => 'index'
 	end
 	def update
+
 	end
 
 	def delete
@@ -59,5 +59,13 @@ class UserController < ApplicationController
 		Digest::SHA1.hexdigest(password)
 	end
 
+	def save_user name, first_name, mail, password
+		user = User::User.new(:name => name,
+			:first_name => first_name, 
+			:mail => mail, 
+			:password => password)	
+
+		user.save!
+	end
 
 end
