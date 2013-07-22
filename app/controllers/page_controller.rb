@@ -1,4 +1,5 @@
-class PageController < ApplicationController
+
+  class PageController < ApplicationController
 
   def menu
     @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}], :public =>true)  

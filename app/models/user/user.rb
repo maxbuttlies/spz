@@ -5,6 +5,7 @@ class User::User
   key :mail, String
   key :password, String
   key :active, Boolean
+  key :right, Integer
 
   validates_presence_of :first_name
   validates_presence_of :name

@@ -1,5 +1,5 @@
 <div class="internSection clearfix">
-	<header><h1>
+	<header class="clearfix"><h1>
 	Mitgliederbereich
 	</h1></header>
 	<%= form_tag("create", method: "post", class: "create") do %>
@@ -7,11 +7,11 @@
 	<%= text_field_tag(:first_name, nil, placeholder: 'Vorname') %>
 	<%= text_field_tag(:mail, nil, placeholder: 'e-mail') %>
 	<%= password_field_tag(:password, nil, placeholder: 'Kennwort') %>
-	<%= submit_tag("Registrieren") %>
+	<%= submit_tag("Registrieren",class: "submitButton") %>
 	<% end %>
 	<%= form_tag("login", method: "post", class:"login") do %>
 	<%= text_field_tag(:mail, nil, placeholder: 'e-mail') %>
 	<%= password_field_tag(:password, nil, placeholder: 'Kennwort') %>
-	<%= submit_tag("Anmelden") %>
+	<%= submit_tag("Anmelden", class: "submitButton") %>
 	<% end %>
 </div>

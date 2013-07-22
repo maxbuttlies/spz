@@ -48,6 +48,7 @@ class UserController < ApplicationController
 	end
 
 	def edit
+		@yrs  =  [['Admin',1], ['Autor',2],['Mitglied',3]]
 		@user=User::User.where(:_id => params[:id]).first
 	end
 

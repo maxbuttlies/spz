@@ -25,14 +25,29 @@ $width : 900px;
 	font-family: 'Metrophobic', sans-serif;	
 	font-weight: normal;
 	font-size: 17px;
+	box-sizing: content-box;
 }
-input{
+input, select{
 	border: none;
 	margin: 10px 0 0;
 	padding:10px;
 	background: #eee;
 	font-size: 30px;
+	outline:none;
 }
+.submitButton, .exitButton{
+					padding: 10px;
+					font-size: 20px;
+					color: #fff;
+					cursor: pointer;
+}
+				.submitButton{
+					background: lighten(green, 20%);
+				}
+				.exitButton{
+					background: lighten(red, 20%);
+					}
+
 .clearfix {
 	&:after {
 		content: '';
@@ -151,19 +166,7 @@ header.head{
 				.public{
 					font-size: 20px;
 				}
-				.submitButton, .exitButton{
-					padding: 10px;
-					font-size: 20px;
-					color: #fff;
-					cursor: pointer;
-
-				}
-				.submitButton{
-					background: lighten(green, 20%);
-				}
-				.exitButton{
-					background: lighten(red, 20%);
-				}
+			
 				input {
 					margin-top: -10px;
 				}
@@ -230,6 +233,7 @@ header.head{
 
 		.half{
 			width: calc(50% - 25px);
+			float: left;
 			&:first-child{
 				margin-right: 5px;
 			}
@@ -243,7 +247,7 @@ header.head{
 			background: #eee;
 		}
 		.checkbox {
-			margin:5px;
+			margin:25px 5px 0;
 			float: left;
 			label{
 				font-size: 25px;
