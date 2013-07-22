@@ -7,15 +7,20 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
+lEVEL: <%=session[:level]%>
+<% if it_is_allowed?  Rights.const_get(:MENU_BAR) %>
 	<nav class="admin">
 		<ul class="clearfix">
 			<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
 			</li>	
+			<% if it_is_allowed? Rights.const_get(:EDIT_USER) %>
 			<li><a href="<%= url_for(:action => 'list', :controller => 'user') %>">Benutzer bearbeiten</a>	
+				<%end%>
 				<li><a href="<%= url_for(:action => 'logout', :controller => 'user') %>">Abmelden</a>
 				</li>		
 			</ul>
 		</nav>
+		<% end %>	
 		<div class="all">
 			<header class="head ">
 				<div class="inner clearfix">	

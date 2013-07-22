@@ -28,16 +28,15 @@ class UserController < ApplicationController
 			@msg = "Den benutzer gibt es leider nicht."
 		else
 			if user.password == password
-				session[:user] = user
+				session[:level] = user.level
 				redirect_to :controller=>'user', :action => 'welcome'
-
 			else
 				@msg = "Da war etwas falsch"
 			end
 		end
 	end
 	def logout
-		session[:user] = nil
+		session[:level] = nil
 		redirect_to :controller=>'user', :action => 'index'
 	end
 	def update
@@ -60,13 +59,22 @@ class UserController < ApplicationController
 		Digest::SHA1.hexdigest(password)
 	end
 
-	def save_user name, first_name, mail, password
-		user = User::User.new(:name => name,
-			:first_name => first_name, 
-			:mail => mail, 
-			:password => password)	
-
+	def save_user user
+		user.name = params[:name]
+		user.first_name = params[:first_name]
+		user.mail = params[:mail]
+		if params[:password] != nil
+			user.password = params[:password]
+		end
+		user.level params[:level].to_i
+		user.active = params[:active] == nil
 		user.save!
 	end
 
+	def is_logged_in?
+		if(session[:level] != nil)
+			redirect_to :controller=>'user', :action => 'welcome'
+		end
+	end
+	helper_method :is_logged_in?
 end

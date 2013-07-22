@@ -20,7 +20,7 @@
 		<%=password_field_tag(:password, nil, placeholder: 'Kennwort', class: 'password half')%>
 		<%=password_field_tag(:password_repeat, nil, placeholder: 'Kennwort wiederholen', class: 'passwordRepeat half')%>
 	
-		<%= select_tag(:rights,options_for_select(@yrs.to_a,3), class: 'half') %>
+		<%= select_tag(:level,options_for_select(@yrs.to_a,@user.level), class: 'level half') %>
 		<div class="checkbox clearfix">
 					<div class="inner">
 						<input type="checkbox" value="None" id="active" name="active" />

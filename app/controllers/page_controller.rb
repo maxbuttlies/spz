@@ -1,5 +1,5 @@
 
-  class PageController < ApplicationController
+class PageController < ApplicationController
 
   def menu
     @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}], :public =>true)  
@@ -85,6 +85,8 @@
       return 1
     elsif p.content.is_a?Page::AddIn
      return 2
-   end  end
-   helper_method :getPageType
+   end  
  end
+ helper_method :getPageType
+
+end
