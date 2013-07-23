@@ -1,4 +1,5 @@
 MyApp::Application.routes.draw do
+
   get "page/new"
   get "page/edit"
   get "page/list"
@@ -20,7 +21,7 @@ MyApp::Application.routes.draw do
   post "user/login"
   get "user/logout"
 
-  get "user/update"
+  post "user/update"
 
   get "user/delete"
 

@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'mongo_mapper'
 gem 'bson_ext'
+gem 'mercury-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
