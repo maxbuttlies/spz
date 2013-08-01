@@ -1,7 +1,7 @@
 /*
 * This is a manifest file that'll be compiled into application.css, which will include all the files
 * listed below.
-*
+	*
 * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
 * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
 *
@@ -36,17 +36,17 @@ input, select{
 	outline:none;
 }
 .submitButton, .exitButton{
-					padding: 10px;
-					font-size: 20px;
-					color: #fff;
-					cursor: pointer;
+	padding: 10px;
+	font-size: 20px;
+	color: #fff;
+	cursor: pointer;
 }
-				.submitButton{
-					background: lighten(green, 20%);
-				}
-				.exitButton{
-					background: lighten(red, 20%);
-					}
+.submitButton{
+	background: lighten(green, 20%);
+}
+.exitButton{
+	background: lighten(red, 20%);
+}
 
 .clearfix {
 	&:after {
@@ -55,6 +55,8 @@ input, select{
 		clear: both;
 	}
 }
+
+
 
 body{
 	background: #efefef;
@@ -81,7 +83,7 @@ header.head{
 	width: 100%;
 	.inner{
 		padding: 20px 0;
-		width: $width+100px;
+		max-width: $width+100px;
 		margin: 0 auto;
 		.logo{
 			width: 100px;
@@ -93,15 +95,20 @@ header.head{
 			border: 1px solid #eee;
 		}
 		h1{
-			float: left;
+			@media (min-width: 700px){
+				float: left;
+			}
 			font-size: 20px;
 			font-weight: normal;
 			color: #FFFFFF;
 			margin: 0 0 0 110px;
-
 		}
-		ul{
-			float: right;
+		ul{		
+			margin: 10px 0 0 110px;	
+			@media (min-width: 700px){
+				float: right;
+				margin:0;
+			}	
 			li{
 				display: block;
 				float: left;
@@ -112,195 +119,193 @@ header.head{
 					color: #FFFFFF;
 					display: block;
 					text-align: center;
-				}
-				ul{
-					display: none;
-
-				}
-				&:hover{
-
-					&> ul{
-						display: block;
-						border:1px solid #eee;
-
-						position: absolute;
-
-						li{
-							a{
-								background: #fff;
-								color: #000;
-								padding: 10px; 							}
-							}
-						}
+					&.hidden{
+						color:#00F;
 					}
-				}
-			}
-		}
-
-	}
-	.imageAtTop{
-		background: url("header.jpg");
-		background-size: cover;
-		background-position: center;
-		width:100%;
-		height: 200px;
-		border-bottom: 1px solid #eee;
-	}
-	main{
-		width: $width;
-		padding:50px;
-		margin: -50px auto;
-		background: #FFFFFF;
-		border:1px solid #cccccc;
-		header{ 
-			border-bottom: 1px solid #eee;
-			h1{
-				margin: 0 auto;
-				color:$baseBlue;
-				font-size: 25px;
-				float: left;
-			}
-			section.info{
-				margin: -10px 0 5px;
-				float: right;
-				.public{
-					font-size: 20px;
-				}
-			
-				input {
-					margin-top: -10px;
-				}
-			}
-		}
-	}
-	p{
-		padding: 10px 0;
-	}
-
-	.create{
-		margin: 0 10px 0 0;
-	} 		
-	.create, .login{
-		width: calc(50% - 20px);
-		float: left;
-		border: 1px solid #eee;
-		padding: 5px;
-		input{
-			width: calc(100% - 20px);
-		}
-	}
-	.leftMenu{
-		width: 100px;
-		float: left;
-		padding: 10px;
-		h2{
-			border-bottom:1px solid #ccc;
-		}
-		ul{
-			margin: 0 0 15px;
-
-			li{
-				border-bottom: 1px solid #efefef;
-				&:last-child{
-					border-bottom: none;
-				}
-				a{						
-					padding: 5px 0;
-					display: block;
-				}
-			}
-		}
-	}
-
-	.users{
-		width: 100%;
-		tr{
-			&:nth-child(odd){
-				background:#eee;
-			}
-			a{
-				padding: 10px 5px; 	
-				display: block;				
-			}			
-		}
-
-	}
-	.editor{
-
-		.full{
-			width: calc(100% - 20px);
-		}
-
-		.half{
-			width: calc(50% - 25px);
-			float: left;
-			&:first-child{
-				margin-right: 5px;
-			}
-		}
-		textarea{
-			width:  calc(100% - 20px);
-			height:250px;
-			border: none;
-			margin: 10px 0 0;
-			padding:10px;
-			background: #eee;
-		}
-		.checkbox {
-			margin:25px 5px 0;
-			float: left;
-			label{
-				font-size: 25px;
-				margin-left: 5px;
-				float: left;
-			}
-			.inner{
-				width: 25px;
-				height: 25px;
-				border: 2px solid #ddd;
-				background-size: #eee;
-				position: relative;
-				float: left;
-				label {
-					cursor: pointer;
+				}	
+				&.drag a{
+					cursor: move;
+				}		
+	
+				&> ul{
 					position: absolute;
-					width: 20px;
-					height: 20px;
-					left: 4px;
-					top: 4px;
+					display: none;
 					margin: 0;
-					&:after {
-						opacity: 0;
-						content: '';
-						position: absolute;
-						width: 9px;
-						height: 5px;
-						background: transparent;
-						top: 4px;
-						left: 4px;
-						border: 3px solid #000;
-						border-top: none;
-						border-right: none;
-						-webkit-transform: rotate(-45deg);
-						transform: rotate(-45deg);
+					li{
+						border: solid #eee;
+						border-width:0 1px 0 1px;
+						&:first-child{
+							border-top:1px;
+						}
+						&:last-child{
+							border-bottom:1px;
+						}
+						a{
+							background: #fff;
+							color: #000;
+							padding: 10px 0;
+
+						}							
 					}
-					&:hover::after {
-						opacity: 0.3;
-					}				
 				}
-				input[type=checkbox]:checked + label:after {
-					opacity: 1;
+				&> ul:before{
+					display:block;
+					content:'';
+					height: 0;
+					width: 0;
+					border-width:5px;
+					border-top-width:0;
+					border-color:transparent transparent #fff transparent;
+					border-style:solid;
+					margin: 0 auto;
 				}
-				input{
-					opacity: 0;
+				&:hover{				
+					&> ul{
+						display: block;					
+					}
 				}
 			}
 		}
 	}
-
-	footer.foot{
-		width: $width;
-		margin: 50px auto;
-		color:#aaa;
-		text-align: center;
+}
+.imageAtTop{
+	background: url("header.jpg");
+	background-size: cover;
+	background-position: center;
+	width:100%;
+	height: 200px;
+	border-bottom: 1px solid #eee;
+}
+main{
+	width: $width;
+	padding:50px;
+	margin: -50px auto;
+	background: #FFFFFF;
+	border:1px solid #cccccc;
+	header{ 
+		border-bottom: 1px solid #eee;
+		h1{
+			margin: 0 auto;
+			color:$baseBlue;
+			font-size: 25px;
+			float: left;
+		}
+		section.info{
+			margin: -10px 0 5px;
+			float: right;
+			.public{
+				font-size: 20px;
+			}			
+			input {
+				margin-top: -10px;
+			}
+		}
 	}
+}
+p{
+	padding: 10px 0;
+}
+.create{
+	margin: 0 10px 0 0;
+} 		
+.create, .login{
+	width: calc(50% - 20px);
+	float: left;
+	border: 1px solid #eee;
+	padding: 5px;
+	input{
+		width: calc(100% - 20px);
+	}
+}
+
+.users{
+	width: 100%;
+	tr{
+		&:nth-child(odd){
+			background:#eee;
+		}
+		a{
+			padding: 10px 5px; 	
+			display: block;				
+		}			
+	}
+}
+.editor{
+
+	.full{
+		width: calc(100% - 20px);
+	}
+
+	.half{
+		width: calc(50% - 25px);
+		float: left;
+		&:first-child{
+			margin-right: 5px;
+		}
+	}
+	textarea{
+		width:  calc(100% - 20px);
+		height:250px;
+		border: none;
+		margin: 10px 0 0;
+		padding:10px;
+		background: #eee;
+	}
+	.checkbox {
+		margin:25px 5px 0;
+		float: left;
+		label{
+			font-size: 25px;
+			margin-left: 5px;
+			float: left;
+		}
+		.inner{
+			width: 25px;
+			height: 25px;
+			border: 2px solid #ddd;
+			background-size: #eee;
+			position: relative;
+			float: left;
+			label {
+				cursor: pointer;
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				left: 4px;
+				top: 4px;
+				margin: 0;
+				&:after {
+					opacity: 0;
+					content: '';
+					position: absolute;
+					width: 9px;
+					height: 5px;
+					background: transparent;
+					top: 4px;
+					left: 4px;
+					border: 3px solid #000;
+					border-top: none;
+					border-right: none;
+					-webkit-transform: rotate(-45deg);
+					transform: rotate(-45deg);
+				}
+				&:hover::after {
+					opacity: 0.3;
+				}				
+			}
+			input[type=checkbox]:checked + label:after {
+				opacity: 1;
+			}
+			input{
+				opacity: 0;
+			}
+		}
+	}
+}
+
+footer.foot{
+	width: $width;
+	margin: 50px auto;
+	color:#aaa;
+	text-align: center;
+}

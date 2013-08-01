@@ -3,60 +3,64 @@
 <head>
 	<title>MyApp</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
+
 	<% if it_is_allowed?  Rights.const_get(:MENU_BAR) %>
 	<nav class="admin">
 		<ul class="clearfix">
-			<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
-			</li>	
+			<li>
+				<a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
+			</li>
 			<% if it_is_allowed? Rights.const_get(:EDIT_USER) %>
-			<li><a href="<%= url_for(:action => 'list', :controller => 'user') %>">Benutzer bearbeiten</a>	
-				<%end%>
-				<li><a href="<%= url_for(:action => 'logout', :controller => 'user') %>">Abmelden</a>
-				</li>		
-			</ul>
-		</nav>
-		<% end %>	
-		<div class="all">
-			<header class="head ">
-				<div class="inner clearfix">	
-					<div class="logo"></div>
-					<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
-
-						<ul>
-							<%  
-							menu.each { |article|  %>
-
-							<li>
-								<a href="../<%=article.keyword%>"><%=article.title%></a>
-								<%if kinds? article.keyword%>
-								<ul>
-									<%getKinds(article.keyword).each { |e| %>
-									<li><a href="../<%=e.keyword%>"><%=e.title%></a>
-
-									</li>
-									<% }%>
-								</ul>
-								<%end%>
-							</li>
-							<% }%>
-
-						</ul></div>
-					</header>
-
-					<div class="imageAtTop">
-
-					</div>
-
-					<main>
-						<%= yield %>
-					</main>
-					<footer class="foot">
-						Kontakt|Impressum
-					</footer>
+			<li>
+				<a href="<%= url_for(:action => 'list', :controller => 'user') %>">Benutzer bearbeiten</a>	
+			</li>
+			<%end%>
+			<li>
+				<a href="<%= url_for(:action => 'logout', :controller => 'user') %>">Abmelden</a>
+			</li>		
+		</ul>
+	</nav>
+	<% end %>	
+	<div class="all">
+		<header class="head ">
+			<div class="inner clearfix">	
+				<div class="logo"></div>
+				<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
+					<ul>
+						<% menu.each { |page|%>
+						<%if page.public or it_is_allowed? "hiddenPage" %>
+						<li draggable="true" class="drag">
+							<a href="../<%=page.keyword%>"><%=page.title%></a>
+							<%if kinds? page.keyword%>
+							<ul>
+								<%getKinds(page.keyword).each { |e| %>
+								<li>
+									<a  <%=hidden page%> href="../<%=page.keyword%>"><%=page.title%></a>
+								</li>
+								<% }%>
+							</ul>
+							<%end%>
+						</li>
+						<%end%>
+						<%}%>
+					</ul>
 				</div>
-			</body>
-			</html>
+			</header>
+
+			<div class="imageAtTop">
+
+			</div>
+
+			<main>
+				<%= yield %>
+			</main>
+			<footer class="foot">
+				Kontakt|Impressum
+			</footer>
+		</div>
+		<%= javascript_include_tag "application" %>
+	</body>
+	</html>

@@ -25,4 +25,14 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :it_is_allowed?
+
+
+  def hidden page
+    if page.public
+      return ""
+    else
+      return "class=hidden"
+    end
+  end
+   helper_method :hidden
 end

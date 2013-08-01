@@ -1,5 +1,5 @@
 
-<%= form_tag(@action, method: "post", class: "editor") do %>
+<%= form_tag("/page/"+@action, method: "post", class: "editor") do %>
 <header class="clearfix">
 	<h1>
 		Seite bearbeiten
@@ -32,4 +32,4 @@
 <%= hidden_field_tag(:old_title, params[:title]) %>
 
 <% end %>
-<
+	
