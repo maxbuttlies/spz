@@ -52,11 +52,7 @@ class PageController < ApplicationController
 
   def save_page page
     page.title = params[:title]
-    if params[:keyword]  == nil || params[:keyword] ==""
-      page.keyword = params[:title] 
-    else
-      page.keyword = params[:keyword] 
-    end
+    page.keyword = params[:keyword] 
     page.parent = params[:parent]
     if params[:public] == nil
       page.public = false

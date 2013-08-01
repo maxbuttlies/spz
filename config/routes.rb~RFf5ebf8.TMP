@@ -1,14 +1,19 @@
 MyApp::Application.routes.draw do
 
+  mount Mercury::Engine => '/m'
+
+  get "page/new"
+  get "page/edit"
+  get "page/list"
+  get "page/menu"
+
   post "page/create"
+
   post "page/update"
+
   post "page/delete"
 
-  match  '/new' => 'page#new'
-  match  '/edit/:keyword' => 'page#edit'
-  match  '/edith/:keyword' => 'page#edit'
-  match  '/:keyword' => 'page#get'
-  match  '/:parent/:keyword' => 'page#get'
+  get "page/get"
 
   get "user/index"
   get "user/welcome"

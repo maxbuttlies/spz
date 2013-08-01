@@ -3,7 +3,6 @@
 <head>
 	<title>MyApp</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
@@ -11,6 +10,7 @@
 	<nav class="admin">
 		<ul class="clearfix">
 			<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
+			<li><a href="javascript:tooglemercury()">Test</a>
 			</li>	
 			<% if it_is_allowed? Rights.const_get(:EDIT_USER) %>
 			<li><a href="<%= url_for(:action => 'list', :controller => 'user') %>">Benutzer bearbeiten</a>	
@@ -28,22 +28,26 @@
 
 						<ul>
 							<%  
-							menu.each { |article|  %>
+							menu.each { |page|  
+								if page.public or it_is_allowed?("hiddenPage") {
+								%>
 
-							<li>
-								<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
-								<%if kinds? article.keyword%>
+							<li draggable="true" class="drag">
+								<a  <%=hidden page%> href="../<%=page.keyword%>"><%=page.title%></a>
+								<%if kinds? page.keyword%>
 
 								<ul class="kinds">
-									<%getKinds(article.keyword).each { |e| %>
-									<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
+									<%getKinds(page.keyword).each { |e| %>
+									<li><a <%=hidden e%> href="../<%=page.keyword%>/<%=e.keyword%>"><%=e.title%></a>
 
 									</li>
 									<% }%>
 								</ul>
 								<%end%>
 							</li>
-							<% }%>
+							<%}%>
+							<%}%>
+							 	
 
 						</ul></div>
 					</header>
@@ -59,5 +63,6 @@
 						Kontakt|Impressum
 					</footer>
 				</div>
+				<%= javascript_include_tag "application" %>
 			</body>
 			</html>

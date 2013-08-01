@@ -13,3 +13,41 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+var dragSrcEl = null;
+
+function handleDragStart(e) {
+	dragSrcEl = this;
+	e.dataTransfer.effectAllowed = 'move';
+	e.dataTransfer.setData('text/html', this.innerHTML);
+}
+
+function handleDragOver(e) {
+	if (e.preventDefault) {
+    	e.preventDefault(); 
+	}
+
+  	e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+  	return false;
+}
+
+function handleDrop(e) {
+
+	if (e.stopPropagation) {
+		e.stopPropagation(); 
+	}
+
+	if (dragSrcEl != this) {
+		$(this).before('<li draggable="true">'+e.dataTransfer.getData('text/html')+'</li>');
+		dragSrcEl.remove();
+	}
+
+	return false;
+}
+
+var cols = document.querySelectorAll('.drag');
+[].forEach.call(cols, function(col) {
+	col.addEventListener('dragstart', handleDragStart, false);
+	col.addEventListener('dragover', handleDragOver, false);
+	col.addEventListener('drop', handleDrop, false);
+});

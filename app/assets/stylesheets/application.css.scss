@@ -56,6 +56,8 @@ input, select{
 	}
 }
 
+
+
 body{
 	background: #efefef;
 }
@@ -81,7 +83,7 @@ header.head{
 	width: 100%;
 	.inner{
 		padding: 20px 0;
-		width: $width+100px;
+		max-width: $width+100px;
 		margin: 0 auto;
 		.logo{
 			width: 100px;
@@ -93,16 +95,20 @@ header.head{
 			border: 1px solid #eee;
 		}
 		h1{
-			float: left;
+			@media (min-width: 700px){
+				float: left;
+			}
 			font-size: 20px;
 			font-weight: normal;
 			color: #FFFFFF;
 			margin: 0 0 0 110px;
 		}
-		ul{
-			float: right;
-	
-	
+		ul{		
+			margin: 10px 0 0 110px;	
+			@media (min-width: 700px){
+				float: right;
+				margin:0;
+			}	
 			li{
 				display: block;
 				float: left;
@@ -113,10 +119,18 @@ header.head{
 					color: #FFFFFF;
 					display: block;
 					text-align: center;
-				}
+					&.hidden{
+						color:#00F;
+					}
+				}	
+				&.drag a{
+					cursor: move;
+				}		
+	
 				&> ul{
 					position: absolute;
 					display: none;
+					margin: 0;
 					li{
 						border: solid #eee;
 						border-width:0 1px 0 1px;
@@ -136,14 +150,14 @@ header.head{
 				}
 				&> ul:before{
 					display:block;
-				    content:'';
-				    height: 0;
-				    width: 0;
-				    border-width:5px;
-				    border-top-width:0;
-				    border-color:transparent transparent #fff transparent;
-				    border-style:solid;
-				    margin: 0 auto;
+					content:'';
+					height: 0;
+					width: 0;
+					border-width:5px;
+					border-top-width:0;
+					border-color:transparent transparent #fff transparent;
+					border-style:solid;
+					margin: 0 auto;
 				}
 				&:hover{				
 					&> ul{
@@ -203,7 +217,7 @@ p{
 		width: calc(100% - 20px);
 	}
 }
-	
+
 .users{
 	width: 100%;
 	tr{
