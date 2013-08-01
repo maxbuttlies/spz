@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :it_is_allowed?
+<<<<<<< HEAD
 
   def hidden page
     if page.public
@@ -34,4 +35,6 @@ class ApplicationController < ActionController::Base
     end
   end
    helper_method :hidden
+=======
+>>>>>>> f1ce33d2ce134de96ef90197e308a0d2ddd45b68
 end

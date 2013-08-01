@@ -62,12 +62,28 @@ class UserController < ApplicationController
 		user.name = params[:name]
 		user.first_name = params[:first_name]
 		user.mail = params[:mail]
+<<<<<<< HEAD
 		if params[:password] != nil && params[:password] != ""
 			user.password = params[:password]
 		end
 		user.level = params[:level].to_i
+=======
+		if params[:password] != nil
+			user.password = params[:password]
+		end
+		user.level params[:level].to_i
+>>>>>>> f1ce33d2ce134de96ef90197e308a0d2ddd45b68
 		user.active = params[:active] == nil
 		user.save!
 	end
 
+<<<<<<< HEAD
+=======
+	def is_logged_in?
+		if(session[:level] != nil)
+			redirect_to :controller=>'user', :action => 'welcome'
+		end
+	end
+	helper_method :is_logged_in?
+>>>>>>> f1ce33d2ce134de96ef90197e308a0d2ddd45b68
 end
