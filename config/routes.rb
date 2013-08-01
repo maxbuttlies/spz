@@ -1,7 +1,10 @@
 MyApp::Application.routes.draw do
 
   get "page/new"
-  get "page/edit"
+  #get "page/edit"
+  match '/edit/:keyword' => 'page#edit'
+  match '/new' => 'edit#new'
+
   get "page/list"
   get "page/menu"
 
@@ -12,7 +15,7 @@ MyApp::Application.routes.draw do
   post "page/delete"
 
   get "page/get"
-
+  match '/:keyword' => 'page#get'
   get "user/index"
   get "user/welcome"
   get "user/list"

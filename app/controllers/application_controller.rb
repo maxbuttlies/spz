@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     if session[:level] != nil
       return Rights.instance.it_is_allowed? session[:level].to_i,page
     else
-      return false
+      return true
     end
   end
   helper_method :it_is_allowed?

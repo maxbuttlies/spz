@@ -2,7 +2,7 @@
 class PageController < ApplicationController
 
   def menu
-    @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}], :public =>true)  
+    @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}])  
   end
 
   def list
@@ -52,7 +52,11 @@ class PageController < ApplicationController
 
   def save_page page
     page.title = params[:title]
-    page.keyword = params[:keyword] 
+    if params[:keyword] == nil || params[:keyword]  == ""
+      page.keyword = params[:title] 
+    else
+      page.keyword = params[:keyword] 
+    end
     page.parent = params[:parent]
     if params[:public] == nil
       page.public = false

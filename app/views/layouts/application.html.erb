@@ -7,8 +7,7 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-lEVEL: <%=session[:level]%>
-<% if it_is_allowed?  Rights.const_get(:MENU_BAR) %>
+	<% if it_is_allowed?  Rights.const_get(:MENU_BAR) %>
 	<nav class="admin">
 		<ul class="clearfix">
 			<li><a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
@@ -32,11 +31,11 @@ lEVEL: <%=session[:level]%>
 							menu.each { |article|  %>
 
 							<li>
-								<a href="../page/get?keyword=<%=article.keyword%>"><%=article.title%></a>
+								<a href="../<%=article.keyword%>"><%=article.title%></a>
 								<%if kinds? article.keyword%>
 								<ul>
 									<%getKinds(article.keyword).each { |e| %>
-									<li><a href="get?keyword=<%=e.keyword%>"><%=e.title%></a>
+									<li><a href="../<%=e.keyword%>"><%=e.title%></a>
 
 									</li>
 									<% }%>
