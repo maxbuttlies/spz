@@ -16,47 +16,35 @@
 var dragSrcEl = null;
 
 function handleDragStart(e) {
-	console.log("test")
 	dragSrcEl = this;
 	e.dataTransfer.effectAllowed = 'move';
-	e.dataTransfer.setData('t', $(this).clone().wrap('<div></div>').parent().html());
 }
 
 function handleDragOver(e) {
 	if (e.preventDefault) {
 		e.preventDefault(); 
 	}
+	e.dataTransfer.dropEffect = 'move'; 
+	return false;
+}
 
-  	e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+function handleDrop(e) {
+	if (e.stopPropagation) {
+		e.stopPropagation(); 
+	}
+	if (dragSrcEl != this) {
+		var parentDiv = this.parentNode;
+		parentDiv.insertBefore(dragSrcEl, this);  		
+	}
+	return false;
+}
+function drag(col){
+	col.addEventListener('dragstart', handleDragStart, false);
+	col.addEventListener('dragover', handleDragOver, false);
+	col.addEventListener('drop', handleDrop, false);
+}
 
-  	return false;
-  }
-
-  function handleDrop(e) {
-
-  	if (e.stopPropagation) {
-  		e.stopPropagation(); 
-  	}
-
-  	if (dragSrcEl != this) {
-  		$(this).before(e.dataTransfer.getData('t'));
-  		
-  		dragSrcEl.remove();
-  		var cols = document.querySelectorAll('.drag');
-  		[].forEach.call(cols, function(col) {
-  			drag(col);
-  		});
-  	}
-
-  	return false;
-  }
-  function drag(col){
-  	col.addEventListener('dragstart', handleDragStart, false);
-  	col.addEventListener('dragover', handleDragOver, false);
-  	col.addEventListener('drop', handleDrop, false);
-  }
-
-  var cols = document.querySelectorAll('.drag');
-  [].forEach.call(cols, function(col) {
-  	drag(col);
-  });
+var cols = document.querySelectorAll('.drag');
+[].forEach.call(cols, function(col) {
+	drag(col);
+});
