@@ -2,7 +2,34 @@
 class PageController < ApplicationController
 
   def menu
-    @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}])  
+    @articles = Page::Page.where('$or' => [{:parent=>''},{:parent=>nil}]).sort(:order,:title) 
+  end
+
+  def menuOrder
+    selfKey = params[:self]
+    puts "----------------------------"
+    puts selfKey
+    before = params[:before]
+    newPos = -1
+    pageSelf = Page::Page.where(:keyword => selfKey).first
+    pageBefore = Page::Page.where(:keyword => before).first
+
+    pageSelf.order = pageBefore.order;
+    pageSelf.save!
+
+    pageBefore.order = pageBefore.order + 1
+    pageBefore.save!
+
+    pages = Page::Page.where(
+      '$and' => [
+        {:order => pageBefore.order},
+        {'$or'=> [{:parent=>''},
+        {:parent=>nil}]}] )
+    test = ""
+    pages.each { |e|  
+      test = test +e.title
+    }
+    render text: test
   end
 
   def list

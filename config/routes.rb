@@ -15,7 +15,7 @@ MyApp::Application.routes.draw do
  post "page/create"
  post "page/update"
  post "page/delete"
-
+ get "page/menuOrder"
  match  '/new' => 'page#new'
  match  '/edit/:keyword' => 'page#edit'
  match  '/edith/:keyword' => 'page#edit'

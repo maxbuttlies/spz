@@ -6,4 +6,5 @@ class Page::Page
   key :parent, String
   key :public, Boolean
   key :content, Type
+  key :order, Integer
 end
