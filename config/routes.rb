@@ -1,27 +1,14 @@
 MyApp::Application.routes.draw do
 
-
- get "user/index"
- get "user/welcome"
- get "user/list"
- post "user/create"
- post "user/login"
- get "user/logout"
- post "user/update"
- get "user/delete"
- get "user/edit"
- get "view/test"
-
- post "page/create"
- post "page/update"
- post "page/delete"
- get "page/menuOrder"
- match  '/new' => 'page#new'
- match  '/edit/:keyword' => 'page#edit'
- match  '/edith/:keyword' => 'page#edit'
- match  '/:keyword' => 'page#get'
- match  '/:parent/:keyword' => 'page#get'
-
+  resources :pages 
+  resources :users do
+    collection do
+      get 'list'
+      get 'logout'
+      post 'login'
+      get 'welcome'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

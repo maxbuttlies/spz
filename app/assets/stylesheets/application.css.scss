@@ -23,7 +23,6 @@ $width : 900px;
 	text-decoration: none;
 	color: #000;
 	font-family: 'Metrophobic', sans-serif;	
-	font-weight: normal;
 	font-size: 17px;
 	box-sizing: content-box;
 }
@@ -119,14 +118,14 @@ header.head{
 					color: #FFFFFF;
 					display: block;
 					text-align: center;
-					&.hidden{
-						color:#00F;
-					}
 				}	
+				&.hidden a{
+					color:#aaa;
+				}
 				&.drag a{
 					cursor: move;
 				}		
-	
+
 				&> ul{
 					position: absolute;
 					display: none;
@@ -182,8 +181,15 @@ main{
 	margin: -50px auto;
 	background: #FFFFFF;
 	border:1px solid #cccccc;
+	@media (max-width: $width){
+		width: calc(100% - 5px);
+		padding:50px 5px;
+	}
 	header{ 
 		border-bottom: 1px solid #eee;
+		@media (max-width: $width){
+			width: calc(100% - 10px);
+		}
 		h1{
 			margin: 0 auto;
 			color:$baseBlue;
@@ -193,11 +199,11 @@ main{
 		section.info{
 			margin: -10px 0 5px;
 			float: right;
-			.public{
-				font-size: 20px;
-			}			
-			input {
-				margin-top: -10px;
+			.checkbox {
+				margin-top: 0 !important;
+			}
+			input,.checkbox {
+				margin-top: -10px ;
 			}
 		}
 	}
@@ -234,13 +240,19 @@ p{
 
 	.full{
 		width: calc(100% - 20px);
+		@media (max-width: $width){
+			width: calc(100% - 30px);
+		}
 	}
 
 	.half{
 		width: calc(50% - 25px);
 		float: left;
-		&:first-child{
+		&.left{
 			margin-right: 5px;
+		}
+		@media (max-width: $width){
+			width: calc(100% - 30px);
 		}
 	}
 	textarea{

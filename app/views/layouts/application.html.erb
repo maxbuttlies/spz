@@ -7,19 +7,21 @@
 </head>
 <body>
 
-	<% if it_is_allowed?  Rights.const_get(:MENU_BAR) %>
+	<% if it_is_allowed?  "menu_bar" %>
 	<nav class="admin">
 		<ul class="clearfix">
+			<% if it_is_allowed? "new_page" %>
 			<li>
-				<a href="../<%=url_for :controller=>'page', :action => 'new'%>">Neue Seite</a>
+				<%= link_to "Neue Seite", :controller => "pages", :action=>"new" %>
 			</li>
-			<% if it_is_allowed? Rights.const_get(:EDIT_USER) %>
+			<%end%>
+			<% if it_is_allowed? "edit_user" %>
 			<li>
-				<a href="<%= url_for(:action => 'list', :controller => 'user') %>">Benutzer bearbeiten</a>	
+				<%= link_to "Benutzer bearbeiten", :controller => "users", :action=>"list" %>
 			</li>
 			<%end%>
 			<li>
-				<a href="<%= url_for(:action => 'logout', :controller => 'user') %>">Abmelden</a>
+				<%= link_to "Abmelden", :controller => "users", :action=>"logout" %>
 			</li>		
 		</ul>
 	</nav>
@@ -31,14 +33,16 @@
 				<h1>Spielmannszug 1902 Rheinbach e.V.</h1 >
 					<ul class="menu">
 						<% menu.each { |page|%>
-						<%if page.public or it_is_allowed? "hiddenPage" %>
-						<li draggable="true" class="drag">
-							<a href="../<%=page.keyword%>"><%=page.title%></a>
+						<%=page.id%>
+						<%if page.public or it_is_allowed? "hidden_page" %>
+						<li <%=raw menu_options page%>>
+							<%= link_to page.title,  page_path(page), :id => page.keyword%>
+
 							<%if kinds? page.keyword%>
 							<ul>
-								<%getKinds(page.keyword).each { |e| %>
-								<li>
-									<a  <%=hidden page%> href="../<%=page.keyword%>"><%=page.title%></a>
+								<%getKinds(page.keyword).each { |kind| %>
+								<li  <%=raw menu_options kind%>>
+									<%= link_to kind.title,  :id => kind.keyword, :controller => "pages", :action=>"show" %>
 								</li>
 								<% }%>
 							</ul>

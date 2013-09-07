@@ -1,0 +1,17 @@
+
+<header class="clearfix">
+	<h1>
+		<%=@page.title%>
+	</h1>
+
+	<section class="info" >
+		<% if it_is_allowed?  "edit_page" %>
+
+		<%= link_to "Bearbeiten", {:controller =>'pages', :action => 'edit', :id => @page.keyword}  ,  :class => "submitButton" %>	
+		<%end%>
+
+	</section>
+</header>
+<section>
+	<%=raw @page.content.content%>
+</section>

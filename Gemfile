@@ -5,8 +5,9 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mongo_mapper'
-gem 'bson_ext'
+gem 'mongo_mapper' ,'0.12.0'
+gem 'bson_ext','1.9.1'
+gem 'maruku','0.6.1'
 
 # Gems used only for assets and not required
 # in production environments by default.

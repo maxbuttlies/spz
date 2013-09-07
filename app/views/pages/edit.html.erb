@@ -1,0 +1,38 @@
+
+<%=form_tag({controller: "pages", action: @action}, method: @method, class: "editor") do%>
+
+<header class="clearfix">
+	<h1>
+		Seite bearbeiten
+	</h1>
+	<section class="info">
+		<div class="checkbox clearfix">
+			<div class="inner">
+				<input type="checkbox" value="None" id="public" name="public" <%if @page.public%>checked<%end%>/>
+				<label for="public"></label>			
+			</div>
+			<%= label_tag(:public, "Öffentlich", class: "public") %>
+		</div>
+		<%= submit_tag("Speichern",class:"submitButton") %>
+		<% if !current_page?(controller: 'pages', action: 'new')
+			%>
+			<%= link_to "Abbrechen", {:controller =>'pages', :action => 'show', :id => @page.keyword}  ,  :class => "exitButton" %>
+			<%end%>
+		</section>
+	</header>
+	<%= text_field_tag(:title, @page.title, placeholder: 'Titel', class: "title full") %>
+	<%= text_field_tag(:parent,  @page.parent, placeholder: 'Übergeordnet',class: "parent half left") %>
+	<%= text_field_tag(:keyword,  @page.keyword, placeholder: 'Adresse' ,class: "keyword half") %>
+	<%= text_field_tag(:order,  @page.order, placeholder: 'Reihenfolge' ,class: "keyword half") %>
+	<%if current_page?(controller: 'pages', action: 'new') %>
+	<%= select_tag(:page_type, options_for_select([['Seite', 1], ['Modul', 2]], 1), class: "half") %>
+	<%else%>
+	<%= hidden_field_tag(:page_type, getPageType(@page)) %>
+	<%end%>
+	<% if @page.content.is_a?Page::Article %>
+	<%= text_area_tag(:content,  @page.content.content, placeholder: 'Inhalt') %>
+	<%elsif  @page.content.is_a?Page::AddIn %>
+	<%= text_field_tag(:controller,  @page.content.controller, placeholder: 'controller') %>
+	<%= text_field_tag(:controller,  @page.content.action, placeholder: 'action') %>
+	<%end%>
+	<% end %>

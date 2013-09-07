@@ -3,13 +3,18 @@ require 'singleton'
 class Rights
 	include Singleton
 
-	MENU_BAR = 1
-	EDIT_USER = 2
-	EDIT_PAGE = 3
+
+	RIGHTS = [
+		["menu_bar", "new_page", "edit_user", "hidden_page", "edit_page", "change_order"],
+		["menu_bar", "new_page",  "hidden_page", "edit_page"]
+
+	]
 
 	def it_is_allowed? level, view
-		if view == MENU_BAR
-			return level <= 2
+		puts RIGHTS[level.to_i-1]
+		puts"----------------------------"
+		if RIGHTS[level - 1] != nil and RIGHTS[level - 1].include? view
+			return true
 		else			
 			return level == 1
 		end

@@ -13,9 +13,15 @@
 
 			<%  @users.each { |user|  %>
 			<tr>
-				<td><a href="edit?id=<%=user._id%>"><%=user.name%></a></td>
-				<td><a href="edit?id=<%=user._id%>"><%=user.first_name%></a></td>
-				<td><a href="edit?id=<%=user._id%>"><%=user.mail%></a></td>
+				<td>
+					<%= link_to user.name, {:controller =>'users', :action => 'edit', :id => user._id} %>	
+				</td>
+				<td>
+					<%= link_to user.first_name, {:controller =>'users', :action => 'edit', :id => user._id} %>	
+				</td>
+				<td>
+					<%= link_to user.mail, {:controller =>'users', :action => 'edit', :id => user._id} %>	
+				</td>
 			</tr>
 		</ul>
 		<% }%>

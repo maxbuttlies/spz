@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 	
 	def welcome
 
@@ -6,12 +6,11 @@ class UserController < ApplicationController
 
 	def index
 		if session[:level] != nil
-			redirect_to :controller=>'user', :action => 'welcome'
+			redirect_to :controller=>'users', :action => 'welcome'
 		end
 	end
 
-	def create
-		
+	def create		
 		save_user User.new
 	end
 
@@ -25,7 +24,7 @@ class UserController < ApplicationController
 		else
 			if user.password == password
 				session[:level] = user.level
-				redirect_to :controller=>'user', :action => 'welcome'
+				redirect_to :controller=>'users', :action => 'welcome'
 			else
 				@msg = "Da war etwas falsch"
 			end
@@ -33,12 +32,13 @@ class UserController < ApplicationController
 	end
 	def logout
 		session[:level] = nil
-		redirect_to :controller=>'user', :action => 'index'
+		redirect_to :controller=>'users', :action => 'index'
 	end
 	def update
 		id = session[:edit_user]
 		user=User::User.where(:_id => id).first
 		save_user user
+		redirect_to :controller=>'users', :action => 'list'
 	end
 
 	def delete
@@ -74,7 +74,7 @@ class UserController < ApplicationController
 
 	def is_logged_in?
 		if(session[:level] != nil)
-			redirect_to :controller=>'user', :action => 'welcome'
+			redirect_to :controller=>'users', :action => 'welcome'
 		end
 	end
 	helper_method :is_logged_in?
